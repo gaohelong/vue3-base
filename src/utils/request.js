@@ -19,7 +19,7 @@ const sign = (params) => {
       str += v + '#'
     }
   }
-  str += 'bigBang2019#88Great!-'
+  str += 'china2021!-'
   return md5(str)
 }
 
