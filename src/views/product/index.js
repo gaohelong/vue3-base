@@ -14,6 +14,7 @@ import {
 import {
   useRouter
 } from 'vue-router'
+import * as productApi from '@/apis/productApi'
 import request from '@/utils/request'
 
 console.clear()
@@ -73,6 +74,38 @@ export default defineComponent({
       info.lookNum++
     }, 1500)
 
+    /* 获取产品名称 */
+    let productName = ref('-')
+    const getProductNmae = (async () => {
+      /* 获取产品名称 */
+      let res = await productApi.getProductNmae(1)
+      if (res.code === 0) {
+
+      } else {
+        productName.value = res.msg
+        Toast(res.msg)
+      }
+      // console.log('productName:', productName)
+    })
+
+    /* 获取产品列表 */
+    let productList = reactive({
+      list: []
+    })
+
+    const getProductList = (async () => {
+      let res = await productApi.getPorductList(1)
+      if (res.code === 0) {
+
+      } else {
+        productList.list = res.data
+        console.log('productList:', productList)
+        Toast(res.msg)
+      }
+      // console.log('productName:', productName)
+    })
+    getProductList()
+
     /* mounted */
     onMounted(() => {
       console.log('----mounted----')
@@ -101,7 +134,10 @@ export default defineComponent({
       title,
       visitNum,
       info,
-      backHandle
+      backHandle,
+      getProductNmae,
+      productName,
+      productList
     }
   },
   /**

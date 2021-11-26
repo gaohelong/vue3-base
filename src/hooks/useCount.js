@@ -2,6 +2,9 @@ import {
   ref
 } from 'vue'
 
+/**
+ * 通用功能
+ */
 export const useCount = (init) => {
   const uCount = ref(init)
 

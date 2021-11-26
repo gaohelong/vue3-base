@@ -20,3 +20,21 @@
   height: 4/@rem;
   background-color: @color-42b983;
 }
+
+.product-list {
+  margin-top: 40/@rem;
+
+  .product-row {
+    display: flex;
+
+    .product-r-item1, .product-r-item2 {
+      width: 60/@rem;
+      line-height: 52/@rem;
+      font-size: 32/@rem;
+    }
+
+    .product-r-item2 {
+      flex-grow: 1;
+    }
+  }
+}
