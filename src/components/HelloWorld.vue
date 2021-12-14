@@ -1,7 +1,8 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <input class="msg-ipt" v-model="msg" ref="hwIptRef">
+    <h1>{{ iptMsg }}</h1>
+    <input class="msg-ipt" v-model="iptMsg" ref="hwIptRef">
+    <van-button type="primary" @click.stop="msgChange">子组件通知父组件</van-button>
   </div>
 </template>
 
@@ -9,16 +10,27 @@
 import {
   defineComponent,
   ref,
+  unref,
   toRefs,
   reactive,
   readonly,
   isReactive,
   isReadonly,
   onMounted,
-  nextTick
+  nextTick,
+  watch,
+  watchEffect
 } from 'vue'
+import { Button } from 'vant' // vant组件-局部注册
 
 export default defineComponent({
+  name: 'HelloWorld',
+  /**
+   * components
+   */
+  components: {
+    [Button.name]: Button // vant组件-局部注册
+  },
   setup (props, context) {
     console.log('----hello world setup----')
     console.log('props:', props)
@@ -32,10 +44,35 @@ export default defineComponent({
     nextTick(() => {
       console.log('------ HelloWorld nextTick ------')
     })
+
+    // 接收父组件属性
+    let iptMsg = ref(props.msg)
+
+    // 父组件修改值时会触发watch的回调
+    watch(
+      () => props.msg,
+      (curIptMsg, preIptMsg) => {
+        console.log("新值:", curIptMsg, "老值:", preIptMsg)
+        iptMsg.value = curIptMsg
+      }
+    );
+
+    const msgChange = () => {
+      // 通过context调用emit事件 需要注意的是Vue2.x中使用$emit
+      context.emit('changeMsg', { msg: unref(iptMsg) })
+    }
+
+    return {
+      iptMsg,
+      msgChange
+    }
   },
   name: 'HelloWorld',
   props: {
-    msg: String
+    msg: {
+      type: String,
+      default: ''
+    }
   },
   methods: {
     /**
@@ -43,6 +80,12 @@ export default defineComponent({
      */
     getMsg () {
       console.log(this.msg)
+    },
+    /**
+     * 修改Msg
+     */
+    setMsg (text) {
+      console.log(text)
     }
   }
 })
@@ -74,7 +117,7 @@ export default defineComponent({
 
   .msg-ipt {
     padding: 12/@rem;
-    width: 300/@rem;
+    width: 400/@rem;
     font-size: 32/@rem;
   }
 </style>

@@ -8,6 +8,9 @@ import {
   isReactive,
   isReadonly
 } from 'vue'
+import {
+  useRouter
+} from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import request from '@/utils/request'
 import {
@@ -22,7 +25,8 @@ export default defineComponent({
   /**
    * 使用setup时，它接受两个参数：
    *  @param {Object} props: 组件传入的属性
-   *  @param {Object} context: 上下文
+   *  @param {Object} context: 上下文, context包含slots、attrs、emit
+   *  注: 函数式组件只能由接收 props 和 context (即：slots、attrs、emit) 的普通函数创建
    *  注: setup中接受的props是响应式的， 当传入新的props 时，会及时被更新。由于是响应式的，所以不可以使用ES6解构，解构会消除它的响应式。
    */
   setup (props, context) {
@@ -95,7 +99,31 @@ export default defineComponent({
     // hooks
     const { uCount, uIncrease, uDecrease } = useCount(0)
 
+    // 路由跳转
+    const router = useRouter()
+    const goJump = (type) => {
+      console.log(router)
+
+      if (type == 'home') {
+        router.push('/')
+      } else if (type == 'product') {
+        // router.push({ path: `/product/1` })
+        router.push({ name: 'Product', params: { id: 1 } })
+      } else if (type == 'sign') {
+        router.push({ path: `/sign/123` })
+      } else if (type == 'watch') {
+        // 带查询参数，变成 /watcom?type=cloud
+        router.push({ path: '/watcom', query: { type: 'cloud' }})
+      }
+    }
+
+    /* change hello world msg */
+    const changeMsg = (data) => {
+      console.log('changeMsg:', data)
+    }
+
     return {
+      /* 属性 */
       params,
       year,
       zt,
@@ -105,9 +133,13 @@ export default defineComponent({
       book,
       author,
       title,
+
+      /* 方法 */
       uCount,
       uIncrease,
-      uDecrease
+      uDecrease,
+      goJump,
+      changeMsg,
     }
   },
   name: 'Home',

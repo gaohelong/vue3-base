@@ -56,3 +56,25 @@
     margin-right: 12/@rem;
   }
 }
+
+/* 吸低导航 */
+.nav-list {
+  display: flex;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: #FFFFFF;
+  border-top-left-radius: 16/@rem;
+  border-top-right-radius: 16/@rem;
+  box-shadow: 0/@rem -2/@rem 5/@rem rgba(0, 0, 0, .6);
+
+  .nav-item {
+    flex-grow: 1;
+    height: 120/@rem;
+    line-height: 120/@rem;
+    font-size: 32/@rem;
+    text-align: center;
+  }
+}

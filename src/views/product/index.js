@@ -1,6 +1,7 @@
 import {
   defineComponent,
   ref,
+  unref,
   toRefs,
   watch,
   reactive,
@@ -35,7 +36,13 @@ export default defineComponent({
     console.log('----setup----')
     console.log('props:', props)
     console.log('context:', context)
+
+    /* router */
     const router = useRouter()
+    console.log(router)
+    console.log(router.currentRoute.value)
+    console.log(router.currentRoute.value.params)
+    console.log(router.currentRoute.value.query)
 
     /* title */
     const title = ref('好医保2021')
@@ -43,6 +50,8 @@ export default defineComponent({
 
     /* visitNum */
     const visitNum = ref(0)
+    console.log('visitNum-value:', visitNum.value)
+    console.log('visitNum-unref:', unref(visitNum))
 
     // visitNum watch ref
     watch(
@@ -55,6 +64,9 @@ export default defineComponent({
     clearInterval1 = setInterval(() => {
       visitNum.value++
     }, 1500)
+
+    let refBoolean = ref(true)
+    console.log('refBoolean: ', refBoolean.value)
 
     /* info */
     const info = reactive({
@@ -118,7 +130,7 @@ export default defineComponent({
       console.log('----product-unmounted----')
     })
 
-    /* methods */
+    /* methods-返回 */
     const backHandle = (e) => {
       console.log(e)
       // router.push('/')
@@ -143,20 +155,19 @@ export default defineComponent({
   /**
    * beforeCreate
    */
-  beforeCreate() {
-    console.log('----beforeCreate----')
-  },
+  // beforeCreate() {
+  //   console.log('----beforeCreate----')
+  // },
   /**
    * created
    */
-  created() {
-    console.log('----created----')
-    console.log(this.params)
-  },
+  // created() {
+  //   console.log('----created----')
+  // },
   /**
    * methods
    */
-  methods: {
+  // methods: {
 
-  }
+  // }
 })

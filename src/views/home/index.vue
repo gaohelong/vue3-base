@@ -1,8 +1,16 @@
 <template>
   <div class="container">
+    <!-- 吸低导航 -->
+    <div class="nav-list">
+      <div class="nav-item" @click.stop="goJump('home')">Home</div>
+      <div class="nav-item" @click.stop="goJump('product')">产品</div>
+      <div class="nav-item" @click.stop="goJump('sign')">签名</div>
+      <div class="nav-item" @click.stop="goJump('watch')">Watch</div>
+    </div>
+
     <img class="logo" src="@/assets/logo.png">
     <div class="year" @click.stop="goProduct">幸福陪伴2021介绍</div>
-    <HelloWorld :msg="componentMsg" ref="hellowordRef" />
+    <HelloWorld :msg="componentMsg" @changeMsg="changeMsg" ref="hellowordRef" />
 
     <h3 class="split-line"></h3>
 
