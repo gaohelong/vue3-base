@@ -6,6 +6,7 @@
       <div class="nav-item" @click.stop="goJump('product')">产品</div>
       <div class="nav-item" @click.stop="goJump('sign')">签名</div>
       <div class="nav-item" @click.stop="goJump('watch')">Watch</div>
+      <div class="nav-item" @click.stop="goJump('vuex')">Vuex</div>
     </div>
 
     <img class="logo" src="@/assets/logo.png">

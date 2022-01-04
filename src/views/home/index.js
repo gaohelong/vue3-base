@@ -6,7 +6,8 @@ import {
   reactive,
   readonly,
   isReactive,
-  isReadonly
+  isReadonly,
+  provide
 } from 'vue'
 import {
   useRouter
@@ -114,6 +115,9 @@ export default defineComponent({
       } else if (type == 'watch') {
         // 带查询参数，变成 /watcom?type=cloud
         router.push({ path: '/watcom', query: { type: 'cloud' }})
+      } else if (type == 'vuex') {
+        // 带查询参数，变成 /watcom?type=cloud
+        router.push('/vuex')
       }
     }
 
@@ -121,6 +125,9 @@ export default defineComponent({
     const changeMsg = (data) => {
       console.log('changeMsg:', data)
     }
+
+    /* provide(父组件向所有子组件传递数据)发送 */
+    provide('provideMsg', 'world')
 
     return {
       /* 属性 */
