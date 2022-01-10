@@ -69,32 +69,8 @@ export default defineComponent({
     return {
       nick: computed(() => store.state.nick), // 在 computed 函数中访问 state
       age: computed(() => store.getters.age), // 在 computed 函数中访问 getter
-    }
-  },
-  methods: {
-    /**
-     * 导出
-     */
-    output() {
-      let canvas = document.getElementById('can-vans')
-      let ctx = canvas.getContext('2d')
-      var oImg = new Image()
-      ctx.drawImage(oImg, 0, 0)
-      this.ImgSrc = canvas.toDataURL('image/png')
-    },
-    /**
-     * 清除
-     */
-    clearCanvas() {
-      let canvas = document.getElementById('can-vans')
-      let ctx = canvas.getContext('2d')
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-    },
-    /**
-     * 返回png图片base64
-     */
-    canvas_goBack() {
-      console.log(this.ImgSrc)
+      modalOpen: ref(true),
+      modalOpen1: ref(true),
     }
   },
 })

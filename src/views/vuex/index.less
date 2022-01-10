@@ -1,6 +1,7 @@
 @import '../../common.less';
 
 .container {
+  position: relative;
   padding: 16/@rem 16/@rem 120/@rem;
 
   .vuex {
@@ -10,4 +11,25 @@
       font-weight: 400;
     }
   }
+}
+
+.modal, .modal1 {
+  position: absolute;
+  top: 500/@rem;
+  right: 100/@rem;
+  left: 100/@rem;
+  z-index: 99;
+  padding: 20/@rem;
+  font-size: 32/@rem;
+  color: @color-FFFFFF;
+  background-color: @color-42b983;
+  border-radius: 32/@rem;
+
+  button {
+    color: #000000;
+  }
+}
+
+.modal {
+  top: 200/@rem;
 }
