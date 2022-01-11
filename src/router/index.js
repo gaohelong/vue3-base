@@ -19,25 +19,41 @@ const routes = [
     path: '/sign/:id',
     name: 'Sign', // 签字
     // route level code-splitting
-    // this generates a separate chunk (product.[hash].js) for this route
+    // this generates a separate chunk (sign.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "product" */ '@/views/sign/index.vue')
+    component: () => import(/* webpackChunkName: "sign" */ '@/views/sign/index.vue')
   },
   {
     path: '/watcom',
     name: 'Watcom', // watch、computed
     // route level code-splitting
-    // this generates a separate chunk (product.[hash].js) for this route
+    // this generates a separate chunk (watcom.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "product" */ '@/views/watcom/index.vue')
+    component: () => import(/* webpackChunkName: "watcom" */ '@/views/watcom/index.vue')
   },
   {
     path: '/vuex',
     name: 'Vuex', // watch、computed
     // route level code-splitting
-    // this generates a separate chunk (product.[hash].js) for this route
+    // this generates a separate chunk (vuex.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "product" */ '@/views/vuex/index.vue')
+    component: () => import(/* webpackChunkName: "vuex" */ '@/views/vuex/index.vue')
+  },
+  {
+    path: '/dcomponents',
+    name: 'Dcomponents', // watch、computed
+    // route level code-splitting
+    // this generates a separate chunk (dcomponents.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "dcomponents" */ '@/views/dcomponents/index.vue')
+  },
+  {
+    path: '/refs',
+    name: 'Refs', // watch、computed
+    // route level code-splitting
+    // this generates a separate chunk (refs.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "refs" */ '@/views/refs/index.vue')
   },
   {
     path: '/404',
