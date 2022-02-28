@@ -1,6 +1,8 @@
 <template>
+  <!-- 吸顶 -->
+  <Nav :backPage="navBackPage"></Nav>
+
   <div class="container">
-    <div class="back" @click.stop="backHandle">返回首页</div>
     <h3 class="split-line"></h3>
     <div class="title">{{ title }}</div>
     <h3 class="split-line"></h3>
@@ -17,6 +19,9 @@
       </div>
     </div>
   </div>
+
+  <!-- 吸低导航 -->
+  <Tabbar curPage="product"></Tabbar>
 </template>
 
 <script src="./index.js"></script>

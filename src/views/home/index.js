@@ -1,4 +1,3 @@
-// @ is an alias to /src
 import {
   defineComponent,
   ref,
@@ -13,13 +12,17 @@ import {
   useRouter
 } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
+import Tabbar from '@/components/Tabbars/Tabbar'
+import Nav from '@/components/Navs/Nav'
 import request from '@/utils/request'
 import {
   Button,
   Toast
 } from 'vant' // vant组件-局部注册
 
-import { useCount } from '@/hooks/useCount'
+import {
+  useCount
+} from '@/hooks/useCount'
 
 console.clear()
 export default defineComponent({
@@ -30,7 +33,7 @@ export default defineComponent({
    *  注: 函数式组件只能由接收 props 和 context (即：slots、attrs、emit) 的普通函数创建
    *  注: setup中接受的props是响应式的， 当传入新的props 时，会及时被更新。由于是响应式的，所以不可以使用ES6解构，解构会消除它的响应式。
    */
-  setup (props, context) {
+  setup(props, context) {
     console.log('----setup----')
     console.log('props:', props)
     console.log('context:', context)
@@ -98,7 +101,11 @@ export default defineComponent({
     console.log('isReadonly: book-', isReadonly(book))
 
     // hooks
-    const { uCount, uIncrease, uDecrease } = useCount(0)
+    const {
+      uCount,
+      uIncrease,
+      uDecrease
+    } = useCount(0)
 
     // 路由跳转
     const router = useRouter()
@@ -109,12 +116,24 @@ export default defineComponent({
         router.push('/')
       } else if (type == 'product') {
         // router.push({ path: `/product/1` })
-        router.push({ name: 'Product', params: { id: 1 } })
+        router.push({
+          name: 'Product',
+          params: {
+            id: 1
+          }
+        })
       } else if (type == 'sign') {
-        router.push({ path: `/sign/123` })
+        router.push({
+          path: `/sign/123`
+        })
       } else if (type == 'watch') {
         // 带查询参数，变成 /watcom?type=cloud
-        router.push({ path: '/watcom', query: { type: 'cloud' }})
+        router.push({
+          path: '/watcom',
+          query: {
+            type: 'cloud'
+          }
+        })
       } else if (type == 'vuex') {
         // 带查询参数，变成 /watcom?type=cloud
         router.push('/vuex')
@@ -129,6 +148,9 @@ export default defineComponent({
     /* provide(父组件向所有子组件传递数据)发送 */
     provide('provideMsg', 'world')
 
+    /* 返回url */
+    const navBackPage = ref(`/product/1`)
+
     return {
       /* 属性 */
       params,
@@ -140,25 +162,27 @@ export default defineComponent({
       book,
       author,
       title,
+      navBackPage,
 
       /* 方法 */
       uCount,
       uIncrease,
       uDecrease,
-      goJump,
       changeMsg,
     }
   },
   name: 'Home',
   components: {
     [Button.name]: Button, // vant组件-局部注册
-    HelloWorld
+    HelloWorld,
+    Tabbar,
+    Nav
   },
   methods: {
     /**
      * 开始学习
      */
-    startStudy () {
+    startStudy() {
       Toast.loading({
         message: '你可以开始学习了',
         forbidClick: true
@@ -170,7 +194,7 @@ export default defineComponent({
     /**
      * 改名
      */
-    changeName () {
+    changeName() {
       this.params.count = this.params.count + 1
       this.params.name = `钻石-${new Date().getTime()}`
 
@@ -179,14 +203,14 @@ export default defineComponent({
     /**
      * 修改组件内容
      */
-    changeComponent () {
+    changeComponent() {
       console.log(this.componentMsg)
       this.componentMsg = `组件内容已修改-${new Date().getTime()}`
     },
     /**
      * 数据重置
      */
-    dataReset () {
+    dataReset() {
       this.params.count = 1
       this.params.name = '钻石王老五'
       this.zt = false
@@ -195,14 +219,14 @@ export default defineComponent({
     /**
      * 跳转到产品页
      */
-    goProduct () {
+    goProduct() {
       this.$router.push('/product/china')
     }
   },
-  beforeCreate () {
+  beforeCreate() {
     console.log('----beforeCreate----')
   },
-  created () {
+  created() {
     console.log('----created----')
     request.get('/api/ucenter/postCollectList', {
       params: {
@@ -226,7 +250,7 @@ export default defineComponent({
 
     console.log(this.params)
   },
-  mounted () {
+  mounted() {
     // 获取dom组件、子组件元素
     console.log(this.$refs.hellowordRef.getMsg()) // 调用子组件方法
     console.log(this.$refs.hellowordRef.msg) // 获取子组件响应式属性

@@ -1,14 +1,8 @@
 <template>
-  <div class="container">
-    <!-- 吸低导航 -->
-    <div class="nav-list">
-      <div class="nav-item" @click.stop="goJump('home')">Home</div>
-      <div class="nav-item" @click.stop="goJump('product')">产品</div>
-      <div class="nav-item" @click.stop="goJump('sign')">签名</div>
-      <div class="nav-item" @click.stop="goJump('watch')">Watch</div>
-      <div class="nav-item" @click.stop="goJump('vuex')">Vuex</div>
-    </div>
+  <!-- 吸顶 -->
+  <Nav :backPage="navBackPage"></Nav>
 
+  <div class="container">
     <img class="logo" src="@/assets/logo.png">
     <div class="year" @click.stop="goProduct">幸福陪伴2021介绍</div>
     <HelloWorld :msg="componentMsg" @changeMsg="changeMsg" ref="hellowordRef" />
@@ -41,6 +35,9 @@
       <van-button type="success" @click.stop="uDecrease">减</van-button>
     </div>
   </div>
+
+  <!-- 底部tabbar -->
+  <Tabbar curPage="home"></Tabbar>
 </template>
 
 <script src="./index.js"></script>

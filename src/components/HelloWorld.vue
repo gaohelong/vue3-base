@@ -1,8 +1,10 @@
 <template>
   <div class="hello">
     <h1>{{ iptMsg }}</h1>
-    <input class="msg-ipt" v-model="iptMsg" ref="hwIptRef">
-    <van-button type="primary" @click.stop="msgChange">子组件通知父组件</van-button>
+    <div class="main-wrap">
+      <input class="msg-ipt" v-model="iptMsg" ref="hwIptRef">
+      <van-button type="primary" class="msg-btn" @click.stop="msgChange">子组件通知父组件</van-button>
+    </div>
   </div>
 </template>
 
@@ -19,7 +21,8 @@ import {
   onMounted,
   nextTick,
   watch,
-  watchEffect
+  watchEffect,
+  inject
 } from 'vue'
 import { Button } from 'vant' // vant组件-局部注册
 
@@ -31,6 +34,18 @@ export default defineComponent({
   components: {
     [Button.name]: Button // vant组件-局部注册
   },
+  /**
+   * props
+   */
+  props: {
+    msg: {
+      type: String,
+      default: ''
+    }
+  },
+  /**
+   * setup
+   */
   setup (props, context) {
     console.log('----hello world setup----')
     console.log('props:', props)
@@ -62,16 +77,12 @@ export default defineComponent({
       context.emit('changeMsg', { msg: unref(iptMsg) })
     }
 
+    /* inject(父组件向所有子组件传递数据)接收 */
+    console.log('provideMsg:', inject('provideMsg'))
+
     return {
       iptMsg,
       msgChange
-    }
-  },
-  name: 'HelloWorld',
-  props: {
-    msg: {
-      type: String,
-      default: ''
     }
   },
   methods: {
@@ -115,9 +126,19 @@ export default defineComponent({
     color: @color-42b983;
   }
 
+  .main-wrap {
+    display: flex;
+    align-items: center;
+  }
+
   .msg-ipt {
+    margin-right: 12/@rem;
     padding: 12/@rem;
     width: 400/@rem;
     font-size: 32/@rem;
+  }
+
+  .msg-btn {
+    flex-shrink: 0;
   }
 </style>

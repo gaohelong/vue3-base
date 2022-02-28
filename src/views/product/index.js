@@ -17,6 +17,8 @@ import {
 } from 'vue-router'
 import * as productApi from '@/apis/productApi'
 import request from '@/utils/request'
+import Nav from '@/components/Navs/Nav'
+import Tabbar from '@/components/Tabbars/Tabbar'
 
 console.clear()
 let clearInterval1 = 0
@@ -27,7 +29,9 @@ export default defineComponent({
    * components
    */
   components: {
-    [Button.name]: Button // vant组件-局部注册
+    [Button.name]: Button, // vant组件-局部注册
+    Nav,
+    Tabbar
   },
   /**
    * setup
@@ -131,22 +135,26 @@ export default defineComponent({
     })
 
     /* methods-返回 */
-    const backHandle = (e) => {
-      console.log(e)
-      // router.push('/')
-      router.push({
-        path: '/',
-        query: {
-          source: 'product'
-        }
-      })
-    }
+    // const backHandle = (e) => {
+    //   console.log(e)
+    //   // router.push('/')
+    //   router.push({
+    //     path: '/',
+    //     query: {
+    //       source: 'product'
+    //     }
+    //   })
+    // }
+
+    /* 返回url */
+    const navBackPage = ref(`/`)
 
     return {
       title,
       visitNum,
       info,
-      backHandle,
+      navBackPage,
+      // backHandle,
       getProductNmae,
       productName,
       productList

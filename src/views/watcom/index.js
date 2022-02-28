@@ -18,6 +18,7 @@ import {
   Toast
 } from 'vant' // vant组件-局部注册
 
+import Tabbar from '@/components/Tabbars/Tabbar'
 import { useCount } from '@/hooks/useCount'
 
 console.clear()
@@ -26,6 +27,7 @@ export default defineComponent({
   name: 'Watcom',
   components: {
     [Button.name]: Button, // vant组件-局部注册
+    Tabbar
   },
   /**
    * 纯粹的组合式: 无法改变data中的值，不用改变的内容可以放到data中, data配合vue2中的老套路来使用

@@ -9,19 +9,21 @@ import {
   isReadonly,
   onMounted
 } from 'vue'
-import HelloWorld from '@/components/HelloWorld'
 import request from '@/utils/request'
 import {
   Button,
   Toast
 } from 'vant' // vant组件-局部注册
+import HelloWorld from '@/components/HelloWorld'
+import Tabbar from '@/components/Tabbars/Tabbar'
 
 console.clear()
 export default defineComponent({
   name: 'Home',
   components: {
     [Button.name]: Button, // vant组件-局部注册
-    HelloWorld
+    HelloWorld,
+    Tabbar
   },
   /**
    * 使用setup时，它接受两个参数：

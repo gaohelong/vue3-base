@@ -10,9 +10,9 @@
   <teleport to="html">
     <div v-if="modalOpen1" class="modal1">
       <div>
-        I'm a teleported modal!
+        I'm a teleported modal1!
         (My parent is "html")
-        <button @click="modalOpen1 = false">
+        <button @click="closeModal">
           Close
         </button>
       </div>
@@ -31,6 +31,9 @@
       </div>
     </div>
   </teleport>
+
+  <!-- 吸低导航 -->
+  <Tabbar curPage="vuex"></Tabbar>
 </template>
 
 <script src="./index.js"></script>

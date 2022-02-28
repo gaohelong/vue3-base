@@ -19,6 +19,9 @@
     <!-- data中的响应式属性 -->
     <div class="row">increasing: {{ increasing }}</div>
   </div>
+
+  <!-- 吸低导航 -->
+  <Tabbar curPage="watcom"></Tabbar>
 </template>
 
 <script src="./index.js"></script>

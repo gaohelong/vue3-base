@@ -14,6 +14,9 @@
       <img class="sign-img" :src="ImgSrc" v-if="ImgSrc">
     </div>
   </div>
+
+  <!-- 吸低导航 -->
+  <Tabbar curPage="sign"></Tabbar>
 </template>
 
 <script src="./index.js"></script>
