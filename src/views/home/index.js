@@ -24,7 +24,6 @@ import {
   useCount
 } from '@/hooks/useCount'
 
-console.clear()
 export default defineComponent({
   /**
    * 使用setup时，它接受两个参数：
@@ -151,6 +150,40 @@ export default defineComponent({
     /* 返回url */
     const navBackPage = ref(`/product/1`)
 
+    /* get-request */
+    const getList = async () => {
+      let reqRes = await request({
+        method: 'get',
+        url: `/list`,
+        params: {
+          page: 1,
+          pagesize: 12
+        },
+      }).then(res => {
+        console.log('newList: ', res)
+      }).catch(err => {
+        console.log('newList err: ', err)
+      })
+    }
+    getList()
+
+    /* post-request */
+    const postList = async () => {
+      let reqRes = await request({
+        method: 'post',
+        url: `/list`,
+        data: {
+          page: 1,
+          pagesize: 12
+        },
+      }).then(res => {
+        console.log('newList: ', res)
+      }).catch(err => {
+        console.log('newList err: ', err)
+      })
+    }
+    postList()
+
     return {
       /* 属性 */
       params,
@@ -228,26 +261,6 @@ export default defineComponent({
   },
   created() {
     console.log('----created----')
-    request.get('/api/ucenter/postCollectList', {
-      params: {
-        page: 1,
-        pagesize: 5
-      }
-    }).then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log('err:', err)
-    })
-
-    // request.post('/api/ucenter/postCollectList', {
-    //   page: 1,
-    //   pagesize: 5
-    // }).then(res => {
-    //   console.log(res)
-    // }).catch(err => {
-    //   console.log('err:', err)
-    // })
-
     console.log(this.params)
   },
   mounted() {

@@ -19,7 +19,7 @@ const sign = (params) => {
       str += v + '#'
     }
   }
-  str += 'china2021!-'
+  str += 'china--'
   return md5(str)
 }
 
@@ -41,7 +41,7 @@ request.interceptors.request.use(
   config => {
     // do something before request is sent
     if (config.method === 'get') { // get
-      // console.log('config.params:', config.params)
+      console.log('config.params:', config.params)
       const reqData = Object.assign({}, config.params)
       reqData.timestamp = parseInt(new Date().getTime() / 1000) + ''
 
@@ -53,7 +53,7 @@ request.interceptors.request.use(
       reqData.sign = sign(reqData)
       config.params = reqData
     } else if (config.method === 'post') { // post
-      // console.log('config.data:', config.data)
+      console.log('config.data:', config.data)
       const reqData = Object.assign({}, config.data)
       reqData.timestamp = parseInt(new Date().getTime() / 1000) + ''
 
