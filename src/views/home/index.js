@@ -150,6 +150,27 @@ export default defineComponent({
     /* 返回url */
     const navBackPage = ref(`/product/1`)
 
+    /* map */
+    const userInfoMap = new Map()
+    userInfoMap.set('name', 'cloud')
+    console.log('userInfoMap: ', userInfoMap)
+    const userInfo = reactive(userInfoMap)
+    console.log('userInfo.get("name"): ', userInfo, userInfo.get('name'))
+
+    /* set */
+    const nameListSet = new Set()
+    nameListSet.add(1)
+    nameListSet.add(1)
+    nameListSet.add({ name: 'cloud' })
+    nameListSet.add({ name: 'cloud' })
+    console.log('nameListSet: ', nameListSet)
+    console.log('nameListSet: ', nameListSet)
+    for (let item of nameListSet.values()) {
+      console.log(item)
+    }
+    const nameList = ref(nameListSet)
+    console.log('nameList: ', nameList.value)
+
     /* get-request */
     const getList = async () => {
       let reqRes = await request({
