@@ -27,6 +27,8 @@
 </script>
 
 <style lang="less" scoped>
+  @import '../../common.less';
+
   .wscn-http404-container {
     transform: translate(-50%, -50%);
     position: absolute;
@@ -36,14 +38,14 @@
 
   .wscn-http404 {
     position: relative;
-    width: 1200px;
-    padding: 0 50px;
+    width: 750/@rem;
+    padding: 0 0;
     overflow: hidden;
 
     .pic-404 {
       position: relative;
-      float: left;
-      width: 600px;
+      margin: 0 auto;
+      width: 600/@rem;
       overflow: hidden;
 
       &__parent {
@@ -172,8 +174,8 @@
     .bullshit {
       position: relative;
       float: left;
-      width: 300px;
-      padding: 30px 0;
+      width: 750/@rem;
+      padding: 60/@rem 0;
       overflow: hidden;
 
       &__oops {
@@ -202,9 +204,10 @@
       }
 
       &__info {
-        font-size: 13px;
-        line-height: 21px;
+        font-size: 26/@rem;
+        line-height: 42/@rem;
         color: grey;
+        text-align: center;
         opacity: 0;
         margin-bottom: 30px;
         animation-name: slideUp;
@@ -215,16 +218,16 @@
 
       &__return-home {
         display: block;
-        float: left;
-        width: 110px;
-        height: 36px;
+        margin: 0 auto;
+        width: 220/@rem;
+        height: 72/@rem;
         background: #1482f0;
-        border-radius: 100px;
+        border-radius: 200/@rem;
         text-align: center;
         color: #ffffff;
         opacity: 0;
-        font-size: 14px;
-        line-height: 36px;
+        font-size: 28/@rem;
+        line-height: 72/@rem;
         cursor: pointer;
         animation-name: slideUp;
         animation-duration: 0.5s;
