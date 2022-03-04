@@ -1,4 +1,3 @@
-// @ is an alias to /src
 import {
   defineComponent,
   ref,

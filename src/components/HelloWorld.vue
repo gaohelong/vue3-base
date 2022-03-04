@@ -68,9 +68,9 @@ export default defineComponent({
       () => props.msg,
       (curIptMsg, preIptMsg) => {
         console.log("新值:", curIptMsg, "老值:", preIptMsg)
-        iptMsg.value = curIptMsg
+        iptMsg.value = curIptMsg // 修改iptMsg响应式属性的值
       }
-    );
+    )
 
     const msgChange = () => {
       // 通过context调用emit事件 需要注意的是Vue2.x中使用$emit

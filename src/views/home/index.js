@@ -6,20 +6,21 @@ import {
   readonly,
   isReactive,
   isReadonly,
-  provide
+  provide,
+  onMounted
 } from 'vue'
 import {
   useRouter
 } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import Tabbar from '@/components/Tabbars/Tabbar'
-import Nav from '@/components/Navs/Nav'
-import request from '@/utils/request'
 import {
   Button,
   Toast
 } from 'vant' // vant组件-局部注册
 
+import request from '@/utils/request'
+import HelloWorld from '@/components/HelloWorld'
+import Tabbar from '@/components/Tabbars/Tabbar'
+import Nav from '@/components/Navs/Nav'
 import {
   useCount
 } from '@/hooks/useCount'
@@ -181,9 +182,9 @@ export default defineComponent({
           pagesize: 12
         },
       }).then(res => {
-        console.log('newList: ', res)
+        console.log('getList: ', res)
       }).catch(err => {
-        console.log('newList err: ', err)
+        console.log('getList err: ', err)
       })
     }
     getList()
@@ -198,12 +199,20 @@ export default defineComponent({
           pagesize: 12
         },
       }).then(res => {
-        console.log('newList: ', res)
+        console.log('postList: ', res)
       }).catch(err => {
-        console.log('newList err: ', err)
+        console.log('postList err: ', err)
       })
     }
     postList()
+
+    /* onMounted */
+    onMounted(() => {
+      console.log('onMounted')
+      // router.push({
+      //   path: `/sign/123`
+      // })
+    })
 
     return {
       /* 属性 */
@@ -274,7 +283,7 @@ export default defineComponent({
      * 跳转到产品页
      */
     goProduct() {
-      this.$router.push('/product/china')
+      this.$router.push('/product/china?a=1&b=2')
     }
   },
   beforeCreate() {

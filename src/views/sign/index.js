@@ -17,7 +17,7 @@ import {
 import HelloWorld from '@/components/HelloWorld'
 import Tabbar from '@/components/Tabbars/Tabbar'
 
-console.clear()
+// console.clear()
 export default defineComponent({
   name: 'Home',
   components: {

@@ -8,6 +8,11 @@ const routes = [
     component: Home
   },
   {
+    path: '/login',
+    name: 'Login', // 产品页
+    component: () => import(/* webpackChunkName: "login" */ '@/views/login.vue')
+  },
+  {
     path: '/product/:id',
     name: 'Product', // 产品页
     // route level code-splitting
@@ -71,6 +76,28 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+})
+
+/**
+ * 全局前置守卫
+ */
+// router.beforeEach((to, from, next) => {
+//   console.log('beforeEach-to: ', to) // to: 即将要进入的目标
+//   console.log('beforeEach-from: ', from) // from: 当前导航正要离开的路由
+
+//   return true // 返回 false 以取消导航
+// })
+
+/**
+ * 全局前置守卫
+ */
+router.beforeEach((to, from, next) => {
+  console.log('beforeEach-to: ', to) // to: 即将要进入的目标
+  console.log('beforeEach-from: ', from) // from: 当前导航正要离开的路由
+
+  let token = 'cloud'
+  if (to.name !== 'Login' && !token) next({ path: '/login' })
+  else next()
 })
 
 export default router
